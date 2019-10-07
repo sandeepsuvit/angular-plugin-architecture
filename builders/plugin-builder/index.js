@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const build_angular_1 = require("@angular-devkit/build-angular");
 const architect_1 = require("@angular-devkit/architect");
+const build_angular_1 = require("@angular-devkit/build-angular");
 const fs = require("fs");
 const operators_1 = require("rxjs/operators");
 let entryPointPath;

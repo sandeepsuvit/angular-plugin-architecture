@@ -82,3 +82,13 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+
+## References
+- https://itnext.io/how-to-build-a-plugin-extensible-application-architecture-in-angular5-736890278f3f
+- https://stackoverflow.com/questions/45503497/how-to-load-dynamic-external-components-into-angular-application/45506470#45506470
+- https://stackoverflow.com/questions/48590455/angular-5-load-modules-that-are-not-known-at-compile-time-dynamically-at-run
+- https://stackoverflow.com/questions/41438198/implementing-a-plugin-architecture-plugin-system-pluggable-framework-in-angu
+- https://stackoverflow.com/questions/50149016/load-new-modules-dynamically-in-run-time-with-angular-cli-angular-5
+- https://github.com/paucls/angular-pluggable-architecture
+- https://github.com/ionepaul/angular-plugin-architecture
+- https://github.com/lmeijdam/angular-umd-dynamic-example

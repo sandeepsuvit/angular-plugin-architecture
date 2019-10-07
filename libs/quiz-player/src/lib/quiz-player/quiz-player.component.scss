@@ -1,0 +1,15 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    li {
+        float: left;
+        margin-bottom: 1rem;
+        margin-right: .2rem;
+    }
+}
+
+button {
+    padding: .5rem;
+}

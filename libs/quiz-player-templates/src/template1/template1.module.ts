@@ -12,5 +12,5 @@ import { Template1LayoutComponent } from './template1-layout/template1-layout.co
   ]
 })
 export class Template1Module {
-  static entry = Template1LayoutComponent;
+  static defaultEntryComponent = Template1LayoutComponent;
 }

@@ -1,11 +1,10 @@
+import { BuilderContext, createBuilder } from '@angular-devkit/architect';
 import { BrowserBuilderOutput, executeBrowserBuilder, ExecutionTransformer } from '@angular-devkit/build-angular';
 import { JsonObject } from '@angular-devkit/core';
-import { createBuilder, BuilderContext } from '@angular-devkit/architect';
 import * as fs from 'fs';
-import * as webpack from 'webpack';
-import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import { tap } from 'rxjs/operators';
+import * as webpack from 'webpack';
 
 interface Options extends JsonObject {
   /**
@@ -24,7 +23,7 @@ interface Options extends JsonObject {
   sharedLibs: string;
 }
 
-let entryPointPath;
+let entryPointPath: any;
 
 function buildPlugin(options: Options,
                      context: BuilderContext,
@@ -42,7 +41,7 @@ function buildPlugin(options: Options,
     return originalWebpackConfigurationFn ? originalWebpackConfigurationFn(config) : config;
   };
 
-  const result = executeBrowserBuilder(options as any, context, transforms);
+  const result = executeBrowserBuilder(options as any, context as any, transforms);
 
   return result.pipe(tap(() => {
     patchEntryPoint('');

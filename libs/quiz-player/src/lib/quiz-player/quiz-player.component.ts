@@ -36,9 +36,18 @@ export class QuizPlayerComponent implements OnInit {
    */
   loadTemplate(pluginName: string) {
     this.templateLoader.load(pluginName).then(moduleFactory => {
+      // Get the reference to the module
       const moduleRef = moduleFactory.create(this.injector);
-      const entryComponent = (moduleFactory.moduleType as any).entry;
+
+      // Select the default component to load from the templates. This referene 
+      // can be found at the module level where the  static reference to the 
+      // component is defined like `static defaultEntryComponent = Component;`
+      const entryComponent = (moduleFactory.moduleType as any).defaultEntryComponent;
+      
+      // Get the component factory
       const compFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(entryComponent);
+      
+      // Create the component on the container specified
       this.vcRef.createComponent(compFactory);
     });
   }

@@ -12,5 +12,5 @@ import { Template2LayoutComponent } from './template2-layout/template2-layout.co
   ]
 })
 export class Template2Module {
-  static entry = Template2LayoutComponent;
+  static defaultEntryComponent = Template2LayoutComponent;
 }
