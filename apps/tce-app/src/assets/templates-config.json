@@ -1,0 +1,10 @@
+{
+    "qp-template-1": {
+        "name": "Template1Module",
+        "path": "/assets/qp-templates/qp-template-1.js"
+    },
+    "qp-template-2": {
+        "name": "Template2Module",
+        "path": "/assets/qp-templates/qp-template-2.js"
+    }
+}

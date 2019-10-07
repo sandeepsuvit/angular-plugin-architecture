@@ -1,0 +1,8 @@
+<p>Quiz template loader</p>
+<ng-template #targetRef></ng-template>
+
+<ul>
+    <li *ngFor="let config of templateConfig | keyvalue">
+        <button (click)="loadTemplate(config.key)">Load tempalte {{config.key}}</button>
+    </li>
+</ul>

@@ -1,7 +1,218 @@
 {
-  "version": 1,
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "version": 1,
+    "projects": {
+        "tce-app": {
+            "projectType": "application",
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "apps/tce-app",
+            "sourceRoot": "apps/tce-app/src",
+            "prefix": "adc-workspace",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/apps/tce-app",
+                        "index": "apps/tce-app/src/index.html",
+                        "main": "apps/tce-app/src/main.ts",
+                        "polyfills": "apps/tce-app/src/polyfills.ts",
+                        "tsConfig": "apps/tce-app/tsconfig.app.json",
+                        "aot": false,
+                        "assets": [
+                            "apps/tce-app/src/favicon.ico",
+                            "apps/tce-app/src/assets"
+                        ],
+                        "styles": ["apps/tce-app/src/styles.scss"],
+                        "scripts": [
+                            "node_modules/systemjs/dist/s.js",
+                            "node_modules/systemjs/dist/extras/named-register.js",
+                            "node_modules/systemjs/dist/extras/amd.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "apps/tce-app/src/environments/environment.ts",
+                                "with": "apps/tce-app/src/environments/environment.prod.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "tce-app:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "tce-app:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "tce-app:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "apps/tce-app/tsconfig.app.json",
+                            "apps/tce-app/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!apps/tce-app/**"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "apps/tce-app/jest.config.js",
+                        "tsConfig": "apps/tce-app/tsconfig.spec.json",
+                        "setupFile": "apps/tce-app/src/test-setup.ts"
+                    }
+                }
+            }
+        },
+        "tce-app-e2e": {
+            "root": "apps/tce-app-e2e",
+            "sourceRoot": "apps/tce-app-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/tce-app-e2e/cypress.json",
+                        "tsConfig": "apps/tce-app-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "tce-app:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "tce-app:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["apps/tce-app-e2e/tsconfig.e2e.json"],
+                        "exclude": ["**/node_modules/**", "!apps/tce-app-e2e/**"]
+                    }
+                }
+            }
+        },
+        "quiz-player": {
+            "projectType": "library",
+            "root": "libs/quiz-player",
+            "sourceRoot": "libs/quiz-player/src",
+            "prefix": "adc-workspace",
+            "architect": {
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/quiz-player/tsconfig.lib.json",
+                            "libs/quiz-player/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!libs/quiz-player/**"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "libs/quiz-player/jest.config.js",
+                        "tsConfig": "libs/quiz-player/tsconfig.spec.json",
+                        "setupFile": "libs/quiz-player/src/test-setup.ts"
+                    }
+                }
+            },
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "styleext": "scss"
+                }
+            }
+        },
+        "quiz-player-templates": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "quiz-player-templates",
+            "sourceRoot": "libs/quiz-player-templates/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "./builders:plugin",
+                    "options": {
+                        "outputPath": "dist/quiz-player-templates",
+                        "index": "",
+                        "main": "libs/quiz-player-templates/src/main.ts",
+                        "polyfills": "libs/quiz-player-templates/src/polyfills.ts",
+                        "tsConfig": "libs/quiz-player-templates/tsconfig.app.json",
+                        "assets": [],
+                        "styles": [],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [],
+                            "optimization": true,
+                            "outputHashing": "none",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                "type": "initial",
+                                "maximumWarning": "2mb",
+                                "maximumError": "5mb"
+                            }]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "cli": {
+        "defaultCollection": "@nrwl/angular"
+    },
+    "schematics": {
+        "@nrwl/angular:application": {
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+            "unitTestRunner": "jest"
+        }
+    },
+    "defaultProject": "tce-app"
 }

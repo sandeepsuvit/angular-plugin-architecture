@@ -15,7 +15,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@adc-workspace/quiz-player": ["libs/quiz-player/src/index.ts"],
+      "@adc-workspace/app-config": ["libs/app-config/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

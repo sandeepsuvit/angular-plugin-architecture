@@ -7,5 +7,21 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "tce-app-e2e": {
+      "tags": []
+    },
+    "tce-app": {
+      "tags": []
+    },
+    "quiz-player": {
+      "tags": []
+    },
+    "app-config": {
+      "tags": []
+    },
+    "qp-templates": {
+      "tags": []
+    }
+  }
 }

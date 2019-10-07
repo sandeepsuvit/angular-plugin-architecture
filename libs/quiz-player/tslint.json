@@ -1,0 +1,7 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [true, "attribute", "adcWorkspace", "camelCase"],
+    "component-selector": [true, "element", "adc-workspace", "kebab-case"]
+  }
+}
