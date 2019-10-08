@@ -26,12 +26,11 @@
         "workspace-schematic": "nx workspace-schematic",
         "dep-graph": "nx dep-graph",
         "help": "nx help",
-        "postinstall": "tsc -p builders/tsconfig.builders.json",
-        "build:template1": "ng build --project quiz-player-templates --prod --modulePath=./template1/template1.module#Template1Module --pluginName=qp-template-1 --outputPath=./apps/tce-app/src/assets/qp-templates",
-        "build:template2": "ng build --project quiz-player-templates --prod --modulePath=./template2/template2.module#Template2Module --pluginName=qp-template-2 --outputPath=./apps/tce-app/src/assets/qp-templates",
-        "build:template3": "ng build --project quiz-player-templates --prod --modulePath=./template3/template3.module#Template3Module --pluginName=qp-template-3 --outputPath=./apps/tce-app/src/assets/qp-templates",
-        "build:template4": "ng build --project quiz-player-templates --prod --modulePath=./template4/template4.module#Template4Module --pluginName=qp-template-4 --outputPath=./apps/tce-app/src/assets/qp-templates",
-        "build:templates": "npm run build:template1 && npm run build:template2 && npm run build:template3 && npm run build:template4"
+        "build:init": "tsc -p builders/tsconfig.builders.json",
+        "build:template1": "ng build --project quiz-player-templates --prod --modulePath=./template1/template1.module#Template1Module --templateName=qp-template-1 --outputPath=./apps/tce-app/src/assets/qp-templates",
+        "build:template2": "ng build --project quiz-player-templates --prod --modulePath=./template2/template2.module#Template2Module --templateName=qp-template-2 --outputPath=./apps/tce-app/src/assets/qp-templates",
+        "build:template3": "ng build --project quiz-player-templates --prod --modulePath=./template3/template3.module#Template3Module --templateName=qp-template-3 --outputPath=./apps/tce-app/src/assets/qp-templates",
+        "build:templates": "npm run build:template1 && npm run build:template2 && npm run build:template3"
     },
     "private": true,
     "dependencies": {

@@ -6,10 +6,13 @@ import * as rxjs from 'rxjs';
 import * as tslib from 'tslib';
 
 export const TEMPLATE_EXTERNALS_MAP = {
+    // Angular dependencies
     'ng.core': core,
     'ng.common': common,
     'ng.forms': forms,
     'ng.router': router,
+    // External support dependencies
     rxjs,
-    tslib
+    tslib,
+    // Include additional support dependencies here
 };

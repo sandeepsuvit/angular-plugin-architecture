@@ -19,7 +19,7 @@ import { TemplateLoaderService } from './template-loader/template-loader.service
   providers: [
     // Provide the default loader for the loader service
     { provide: TemplateLoaderService, useClass: ClientTemplateLoaderService },
-    // Configuration provider, this would load the default config before application initializes
+    // Configuration provider, this would load the default config into memory when application initializes
     TemplateConfigProvider,
     {
       provide: APP_INITIALIZER,

@@ -168,7 +168,7 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "./builders:plugin",
+                    "builder": "./builders:template-builder",
                     "options": {
                         "outputPath": "dist/quiz-player-templates",
                         "index": "",

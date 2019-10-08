@@ -8,6 +8,6 @@
     "target": "es6"
   },
   "files": [
-    "./plugin-builder/index.ts"
+    "./template-builder/index.ts"
   ]
 }

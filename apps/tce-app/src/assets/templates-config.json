@@ -1,18 +1,14 @@
 {
     "qp-template-1": {
         "name": "Template1Module",
-        "path": "/assets/qp-templates/qp-template-1.js"
+        "path": "/assets/qp-templates/qp-template-1.umd.js"
     },
     "qp-template-2": {
         "name": "Template2Module",
-        "path": "/assets/qp-templates/qp-template-2.js"
+        "path": "/assets/qp-templates/qp-template-2.umd.js"
     },
     "qp-template-3": {
         "name": "Template3Module",
-        "path": "/assets/qp-templates/qp-template-3.js"
-    },
-    "qp-template-4": {
-        "name": "Template4Module",
-        "path": "/assets/qp-templates/qp-template-4.js"
+        "path": "/assets/qp-templates/qp-template-3.umd.js"
     }
 }

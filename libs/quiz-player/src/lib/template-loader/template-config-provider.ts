@@ -8,7 +8,7 @@ import { ITemplateConfig } from './template-config.interface';
 @Injectable()
 export class TemplateConfigProvider {
     config: ITemplateConfig;
-    TEMPLATE_CONFIG_PATH = 'assets/templates-config.json';
+    TEMPLATE_CONFIG_PATH = `assets/templates-config.json`;
 
     constructor(
         private http: HttpClient,

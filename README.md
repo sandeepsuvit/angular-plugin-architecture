@@ -83,6 +83,14 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
 
+## Create custom template builder
+
+Run `npm run build:init` to compile the template builder
+
+Run `npm run build:templates` to create umd file for all templates
+
+Run `npm run build:template1` to create umd file for individual template
+
 ## References
 - https://itnext.io/how-to-build-a-plugin-extensible-application-architecture-in-angular5-736890278f3f
 - https://stackoverflow.com/questions/45503497/how-to-load-dynamic-external-components-into-angular-application/45506470#45506470

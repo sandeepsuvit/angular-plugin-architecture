@@ -12,20 +12,20 @@ export class ClientTemplateLoaderService extends TemplateLoaderService {
         super();
     }
 
-    /**∏
-     * Attach the support libraries for the templates that are
-     * loaded dynamically
+    /**
+     * Attach the support dependencies for the module that is loaded
      *
      * @memberof ClientTemplateLoaderService
      */
     provideSupportModules(): void {
-        Object.keys(TEMPLATE_EXTERNALS_MAP).forEach(externalKey =>
-            window.define(externalKey, [], () => TEMPLATE_EXTERNALS_MAP[externalKey])
-        );
+        Object.keys(TEMPLATE_EXTERNALS_MAP).forEach(externalKey => {
+            // Support provided by systemjs for AMD module loading
+            window.define(externalKey, [], () => TEMPLATE_EXTERNALS_MAP[externalKey]);
+        });
     }
     
     /**
-     * Load module factory details for the template specified
+     * Load the factory details for the module specified
      *
      * @template T
      * @param {string} templateName
@@ -38,14 +38,14 @@ export class ClientTemplateLoaderService extends TemplateLoaderService {
             throw Error(`Cannot find template specified`);
         }
 
-        // Get the dependencies for the template module
+        // Get the shared dependencies for the module if specified
         const depsPromises = (config[templateName].deps || []).map(async (dep: any) => {
             return SystemJs.import(config[dep].path).then((m: any) => {
                 window['define'](dep, [], () => m.default);
             });
         });
 
-        // Get the factory object for the template itself
+        // Get the factory object for the module itself
         return Promise.all(depsPromises).then(async () => {
             return SystemJs.import(config[templateName].path).then(
                 (module: any) => module.default.default
