@@ -92,6 +92,8 @@ Run `npm run build:templates` to create umd file for all templates
 Run `npm run build:template1` to create umd file for individual template
 
 ## References
+- UMD (Universal Module Definition)
+- AMD (Asynchronous Module Definition)
 - https://itnext.io/how-to-build-a-plugin-extensible-application-architecture-in-angular5-736890278f3f
 - https://stackoverflow.com/questions/45503497/how-to-load-dynamic-external-components-into-angular-application/45506470#45506470
 - https://stackoverflow.com/questions/48590455/angular-5-load-modules-that-are-not-known-at-compile-time-dynamically-at-run

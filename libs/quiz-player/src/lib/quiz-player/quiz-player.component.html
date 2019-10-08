@@ -2,7 +2,7 @@
 
 <ul>
     <li *ngFor="let config of templateConfig | keyvalue">
-        <button (click)="loadTemplate(config.key)">Load: {{config.key}}</button>
+        <button class="button -blue center" (click)="loadTemplate(config.key)">{{config.key}}</button>
     </li>
 </ul>
 
