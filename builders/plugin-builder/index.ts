@@ -6,6 +6,12 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import * as webpack from 'webpack';
 
+/**
+ * Custom template definition for the builder
+ *
+ * @interface Options
+ * @extends {JsonObject}
+ */
 interface Options extends JsonObject {
   /**
    * A string of the form `path/to/file#exportName` that acts as a path to include to bundle
@@ -25,19 +31,30 @@ interface Options extends JsonObject {
 
 let entryPointPath: any;
 
+/**
+ * Custom build trigger
+ *
+ * @param {Options} options
+ * @param {BuilderContext} context
+ * @param {{webpackConfiguration?: ExecutionTransformer<webpack.Configuration>}} [transforms={}]
+ * @returns {Observable<BrowserBuilderOutput>}
+ */
 function buildPlugin(options: Options,
                      context: BuilderContext,
                      transforms: {
                          webpackConfiguration?: ExecutionTransformer<webpack.Configuration>,
                      } = {}): Observable<BrowserBuilderOutput> {
+  
   options.deleteOutputPath = false;
-
+  
+  // Validate the options
   validateOptions(options);
 
   const originalWebpackConfigurationFn = transforms.webpackConfiguration;
+  
+  // Update the webpack configurations
   transforms.webpackConfiguration = (config: webpack.Configuration) => {
     patchWebpackConfig(config, options);
-
     return originalWebpackConfigurationFn ? originalWebpackConfigurationFn(config) : config;
   };
 
@@ -48,10 +65,21 @@ function buildPlugin(options: Options,
   }));
 }
 
+/**
+ * Function to write just in time build data to the main.ts
+ * file before the bundling happens
+ *
+ * @param {string} contents
+ */
 function patchEntryPoint(contents: string) {
   fs.writeFileSync(entryPointPath, contents);
 }
 
+/**
+ * Validate the build options
+ *
+ * @param {Options} options
+ */
 function validateOptions(options: Options) {
   const { pluginName, modulePath } = options;
 
@@ -64,6 +92,13 @@ function validateOptions(options: Options) {
   }
 }
 
+/**
+ * Update the webpack build params so that we take in only
+ * the necessary parameters to build the umd files
+ *
+ * @param {webpack.Configuration} config
+ * @param {Options} options
+ */
 function patchWebpackConfig(config: webpack.Configuration, options: Options) {
   const { pluginName, sharedLibs } = options;
 
@@ -100,7 +135,7 @@ function patchWebpackConfig(config: webpack.Configuration, options: Options) {
   }
 
   const ngCompilerPluginInstance = config.plugins.find(
-    x => x.constructor && x.constructor.name === 'AngularCompilerPlugin'
+    (x: any) => x.constructor && x.constructor.name === 'AngularCompilerPlugin'
   );
   if (ngCompilerPluginInstance) {
     ngCompilerPluginInstance._entryModule = options.modulePath;
@@ -112,15 +147,14 @@ function patchWebpackConfig(config: webpack.Configuration, options: Options) {
 
   const [modulePath, moduleName] = options.modulePath.split('#');
 
-  const factoryPath = `${
-    modulePath.includes('.') ? modulePath : `${modulePath}/${modulePath}`
-    }.ngfactory`;
+  const factoryPath = `${modulePath.includes('.') ? modulePath : `${modulePath}/${modulePath}`}.ngfactory`;
   const entryPointContents = `
-       export * from '${modulePath}';
-       export * from '${factoryPath}';
-       import { ${moduleName}NgFactory } from '${factoryPath}';
-       export default ${moduleName}NgFactory;
-    `;
+      export * from '${modulePath}';
+      export * from '${factoryPath}';
+      import { ${moduleName}NgFactory } from '${factoryPath}';
+      export default ${moduleName}NgFactory;
+  `;
+
   patchEntryPoint(entryPointContents);
 
   config.output.filename = `${pluginName}.js`;
@@ -130,4 +164,5 @@ function patchWebpackConfig(config: webpack.Configuration, options: Options) {
   config.output.globalObject = `(typeof self !== 'undefined' ? self : this)`;
 }
 
+// Export the custom build script
 export default createBuilder<Options>(buildPlugin);
