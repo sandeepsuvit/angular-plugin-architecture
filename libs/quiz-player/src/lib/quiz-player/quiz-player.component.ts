@@ -30,6 +30,7 @@ export class QuizPlayerComponent implements OnInit {
 
   /**
    * Load the template by name
+   * Note: This method can be used to load different templates on the fly
    *
    * @param {string} pluginName
    * @memberof QuizPlayerComponent
@@ -47,8 +48,18 @@ export class QuizPlayerComponent implements OnInit {
       // Get the component factory
       const compFactory = moduleRef.componentFactoryResolver.resolveComponentFactory(entryComponent);
       
+      // Replace with new element
+      this.vcRef.clear();
+
       // Create the component on the container specified
-      this.vcRef.createComponent(compFactory);
+      const componentRef = this.vcRef.createComponent(compFactory);
+      
+      // Detect changes on the component
+      componentRef.changeDetectorRef.detectChanges();
+      // Detach the change reference subscriptions if any
+      componentRef.onDestroy(() => {
+        componentRef.changeDetectorRef.detach();
+      });
     });
   }
 }
