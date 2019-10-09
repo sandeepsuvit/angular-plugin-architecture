@@ -5,10 +5,16 @@
     },
     "qp-template-2": {
         "name": "Template2Module",
-        "path": "/assets/qp-templates/qp-template-2.umd.js"
+        "path": "/assets/qp-templates/qp-template-2.umd.js",
+        "deps": [
+            "qp-template-1"
+        ]
     },
     "qp-template-3": {
         "name": "Template3Module",
-        "path": "/assets/qp-templates/qp-template-3.umd.js"
+        "path": "/assets/qp-templates/qp-template-3.umd.js",
+        "deps": [
+            "qp-template-1"
+        ]
     }
 }
