@@ -115,8 +115,7 @@ function patchWebpackConfig(config: webpack.Configuration, options: Options) {
         '@angular/common': 'ng.common',
         '@angular/forms': 'ng.forms',
         '@angular/router': 'ng.router',
-        '@angular/platform-browser': 'ng.platform',
-        tslib: 'tslib',
+        tslib: 'tslib'
         // put here other common dependencies
     };
 

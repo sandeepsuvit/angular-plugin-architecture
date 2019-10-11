@@ -25,14 +25,11 @@
                             "apps/tce-app/src/favicon.ico",
                             "apps/tce-app/src/assets"
                         ],
-                        "styles": [
-                            "apps/tce-app/src/styles.scss"
-                        ],
+                        "styles": ["apps/tce-app/src/styles.scss"],
                         "scripts": [
                             "node_modules/systemjs/dist/s.js",
                             "node_modules/systemjs/dist/extras/named-register.js",
-                            "node_modules/systemjs/dist/extras/amd.js",
-                            "node_modules/quill/dist/quill.js"
+                            "node_modules/systemjs/dist/extras/amd.js"
                         ]
                     },
                     "configurations": {
