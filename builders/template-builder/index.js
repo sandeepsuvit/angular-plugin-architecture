@@ -72,8 +72,8 @@ function patchWebpackConfig(config, options) {
         '@angular/common': 'ng.common',
         '@angular/forms': 'ng.forms',
         '@angular/router': 'ng.router',
-        tslib: 'tslib'
-        // put here other common dependencies
+        '@angular/platform-browser': 'ng.platform',
+        tslib: 'tslib',
     };
     if (sharedLibs) {
         config.externals = [config.externals];
