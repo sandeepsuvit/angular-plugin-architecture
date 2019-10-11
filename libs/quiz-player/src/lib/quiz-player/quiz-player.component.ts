@@ -32,11 +32,11 @@ export class QuizPlayerComponent implements OnInit {
    * Load the template by name
    * Note: This method can be used to load different templates on the fly
    *
-   * @param {string} pluginName
+   * @param {string} templateName
    * @memberof QuizPlayerComponent
    */
-  loadTemplate(pluginName: string) {
-    this.templateLoader.load(pluginName).then(moduleFactory => {
+  loadTemplate(templateName: string) {
+    this.templateLoader.load(templateName).then(moduleFactory => {
       // Get the reference to the module
       const moduleRef = moduleFactory.create(this.injector);
 
